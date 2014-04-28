@@ -1,41 +1,7 @@
 module RubyChess
 
-  class Square
-
-    def initialize row, column
-      @row = row
-      @column = column
-      @piece = nil
-    end
-
-    def position
-      (@row.to_s + @column.to_s).to_sym
-    end
-
-    def set_piece!(piece)
-      if (empty?) 
-        @piece = piece
-        nil
-      else
-        previous_piece = @piece.dup
-        @piece = piece
-        previous_piece
-      end
-    end
-
-    def get_piece
-      @piece
-    end
-
-    def empty?
-      @piece == nil
-    end
-
-  end
-
   class ChessBoard
     attr_reader :squares
-    private :squares
 
     def initialize
       @squares = []
@@ -102,5 +68,11 @@ module RubyChess
       get_square_at(row, column).get_piece
     end
 
+    private :squares,
+            :put_pieces_in_starting_position,
+            :get_square_at, 
+            :get_piece_at
+
   end
+
 end
