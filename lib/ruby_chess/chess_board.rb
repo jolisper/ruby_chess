@@ -59,7 +59,7 @@ module RubyChess
     end
     
     def get_square_at(row, column)
-      selected = @squares.find do |square|
+      @squares.find do |square|
         square.position == (row.to_s + column.to_s).to_sym
       end
     end
