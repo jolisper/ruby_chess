@@ -13,14 +13,14 @@ describe ChessBoard do
     expect(@chessboard).to have(64).squares
   end
 
-  it "top left square is the 8a square" do
+  it "top left square is the a8 square" do
     square = @chessboard.instance_variable_get(:@squares).first
-    expect(square.position).to be(:'8a')
+    expect(square.position).to be(:a8)
   end
 
-  it "botton right square is the 1h square" do
+  it "botton right square is the h1 square" do
     square = @chessboard.instance_variable_get(:@squares).last
-    expect(square.position).to be(:'1h')
+    expect(square.position).to be(:h1)
   end
 
   context "when new game is started" do
@@ -33,165 +33,165 @@ describe ChessBoard do
       expect(@chessboard.new_game).to be(true)
     end
 
-    it "a black rook is in the 8a position" do
-      piece = @chessboard.send('get_piece_at', 8, :a)
+    it "a black rook is in the a8 position" do
+      piece = @chessboard.send('get_piece_at', :a8)
       expect(piece.complete_name).to be(:black_rook)
     end
 
-    it "a black knight is in the 8b position" do
-      piece = @chessboard.send('get_piece_at', 8, :b)
+    it "a black knight is in the b8 position" do
+      piece = @chessboard.send('get_piece_at', :b8)
       expect(piece.complete_name).to be(:black_knight)
     end
 
-    it "a black bishop is in the 8c position" do
-      piece = @chessboard.send('get_piece_at', 8, :c)
+    it "a black bishop is in the c8 position" do
+      piece = @chessboard.send('get_piece_at', :c8)
       expect(piece.complete_name).to be(:black_bishop)
     end
 
-    it "the black queen is in the 8d position" do
-      piece = @chessboard.send('get_piece_at', 8, :d)
+    it "the black queen is in the d8 position" do
+      piece = @chessboard.send('get_piece_at', :d8)
       expect(piece.complete_name).to be(:black_queen)
     end
 
-    it "the black king is in the 8e position" do
-      piece = @chessboard.send('get_piece_at', 8, :e)
+    it "the black king is in the e8 position" do
+      piece = @chessboard.send('get_piece_at', :e8)
       expect(piece.complete_name).to be(:black_king)
     end
 
-    it "a black bishop is in the 8f position" do
-      piece = @chessboard.send('get_piece_at', 8, :f)
+    it "a black bishop is in the f8 position" do
+      piece = @chessboard.send('get_piece_at', :f8)
       expect(piece.complete_name).to be(:black_bishop)
     end
 
-    it "a black knight is in the 8g position" do
-      piece = @chessboard.send('get_piece_at', 8, :g)
+    it "a black knight is in the g8 position" do
+      piece = @chessboard.send('get_piece_at', :g8)
       expect(piece.complete_name).to be(:black_knight)
     end
 
-    it "a black rook is in the 8h position" do
-      piece = @chessboard.send('get_piece_at', 8, :h)
+    it "a black rook is in the h8 position" do
+      piece = @chessboard.send('get_piece_at', :h8)
       expect(piece.complete_name).to be(:black_rook)
     end
 
-    it "a black pawn is in the 7a position" do
-      piece = @chessboard.send('get_piece_at', 7, :a)
+    it "a black pawn is in the a7 position" do
+      piece = @chessboard.send('get_piece_at', :a7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7b position" do
-      piece = @chessboard.send('get_piece_at', 7, :b)
+    it "a black pawn is in the b7 position" do
+      piece = @chessboard.send('get_piece_at', :b7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7c position" do
-      piece = @chessboard.send('get_piece_at', 7, :c)
+    it "a black pawn is in the c7 position" do
+      piece = @chessboard.send('get_piece_at', :c7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7d position" do
-      piece = @chessboard.send('get_piece_at', 7, :d)
+    it "a black pawn is in the d7 position" do
+      piece = @chessboard.send('get_piece_at', :d7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7e position" do
-      piece = @chessboard.send('get_piece_at', 7, :e)
+    it "a black pawn is in the e7 position" do
+      piece = @chessboard.send('get_piece_at', :e7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7f position" do
-      piece = @chessboard.send('get_piece_at', 7, :f)
+    it "a black pawn is in the f7 position" do
+      piece = @chessboard.send('get_piece_at', :f7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7g position" do
-      piece = @chessboard.send('get_piece_at', 7, :g)
+    it "a black pawn is in the g7 position" do
+      piece = @chessboard.send('get_piece_at', :g7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
-    it "a black pawn is in the 7h position" do
-      piece = @chessboard.send('get_piece_at', 7, :h)
+    it "a black pawn is in the h7 position" do
+      piece = @chessboard.send('get_piece_at', :h7)
       expect(piece.complete_name).to be(:black_pawn)
     end
 
     # White pieces
 
-    it "a white rook is in the 1a position" do
-      piece = @chessboard.send('get_piece_at', 1, :a)
+    it "a white rook is in the a1 position" do
+      piece = @chessboard.send('get_piece_at', :a1)
       expect(piece.complete_name).to be(:white_rook)
     end
 
-    it "a white knight is in the 1b position" do
-      piece = @chessboard.send('get_piece_at', 1, :b)
+    it "a white knight is in the b1 position" do
+      piece = @chessboard.send('get_piece_at', :b1)
       expect(piece.complete_name).to be(:white_knight)
     end
 
-    it "a white bishop is in the 8c position" do
-      piece = @chessboard.send('get_piece_at', 1, :c)
+    it "a white bishop is in the c1 position" do
+      piece = @chessboard.send('get_piece_at', :c1)
       expect(piece.complete_name).to be(:white_bishop)
     end
 
-    it "the white queen is in the 8d position" do
-      piece = @chessboard.send('get_piece_at', 1, :d)
+    it "the white queen is in the d1 position" do
+      piece = @chessboard.send('get_piece_at', :d1)
       expect(piece.complete_name).to be(:white_queen)
     end
 
-    it "the white king is in the 8e position" do
-      piece = @chessboard.send('get_piece_at', 1, :e)
+    it "the white king is in the e1 position" do
+      piece = @chessboard.send('get_piece_at', :e1)
       expect(piece.complete_name).to be(:white_king)
     end
 
-    it "a white bishop is in the 8f position" do
-      piece = @chessboard.send('get_piece_at', 1, :f)
+    it "a white bishop is in the f1 position" do
+      piece = @chessboard.send('get_piece_at', :f1)
       expect(piece.complete_name).to be(:white_bishop)
     end
 
-    it "a white knight is in the 8g position" do
-      piece = @chessboard.send('get_piece_at', 1, :g)
+    it "a white knight is in the g1 position" do
+      piece = @chessboard.send('get_piece_at', :g1)
       expect(piece.complete_name).to be(:white_knight)
     end
 
-    it "a white rook is in the 8h position" do
-      piece = @chessboard.send('get_piece_at', 1, :h)
+    it "a white rook is in the h1 position" do
+      piece = @chessboard.send('get_piece_at', :h1)
       expect(piece.complete_name).to be(:white_rook)
     end
 
-    it "a white pawn is in the 7a position" do
-      piece = @chessboard.send('get_piece_at', 2, :a)
+    it "a white pawn is in the a2 position" do
+      piece = @chessboard.send('get_piece_at', :a2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7b position" do
-      piece = @chessboard.send('get_piece_at', 2, :b)
+    it "a white pawn is in the b2 position" do
+      piece = @chessboard.send('get_piece_at', :b2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7c position" do
-      piece = @chessboard.send('get_piece_at', 2, :c)
+    it "a white pawn is in the c2 position" do
+      piece = @chessboard.send('get_piece_at', :c2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7d position" do
-      piece = @chessboard.send('get_piece_at', 2, :d)
+    it "a white pawn is in the d2 position" do
+      piece = @chessboard.send('get_piece_at', :d2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7e position" do
-      piece = @chessboard.send('get_piece_at', 2, :e)
+    it "a white pawn is in the e2 position" do
+      piece = @chessboard.send('get_piece_at', :e2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7f position" do
-      piece = @chessboard.send('get_piece_at', 2, :f)
+    it "a white pawn is in the f2 position" do
+      piece = @chessboard.send('get_piece_at', :f2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7g position" do
-      piece = @chessboard.send('get_piece_at', 2, :g)
+    it "a white pawn is in the g2 position" do
+      piece = @chessboard.send('get_piece_at', :g2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 
-    it "a white pawn is in the 7h position" do
-      piece = @chessboard.send('get_piece_at', 2, :h)
+    it "a white pawn is in the h2 position" do
+      piece = @chessboard.send('get_piece_at', :h2)
       expect(piece.complete_name).to be(:white_pawn)
     end
 

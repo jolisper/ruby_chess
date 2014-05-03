@@ -4,7 +4,7 @@ require 'ruby_chess'
 describe Square do
   
   context "when there is no piece on the square" do
-    before(:each) { @square = Square.new(8, 'h') }
+    before(:each) { @square = Square.new(:h8) }
 
     it "#empty? returns true" do
       expect(@square.empty?).to be(true)
@@ -23,10 +23,10 @@ describe Square do
 
   context "when there is a piece on the square" do
     before(:each) { 
-      @square = Square.new(8, 'h') 
+      @square = Square.new(:h8) 
       @square.set_piece! Piece.make_a_white_pawn
-    } 
-
+    }
+    
     it "#empty? returns false" do
       expect(@square.empty?).to be(false)
     end

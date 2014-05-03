@@ -2,14 +2,13 @@ module RubyChess
 
   class Square
 
-    def initialize row, column
-      @row = row
-      @column = column
+    def initialize position
+      @position = position
       @piece = nil
     end
 
     def position
-      (@row.to_s + @column.to_s).to_sym
+      @position
     end
 
     def set_piece!(piece)
@@ -17,9 +16,7 @@ module RubyChess
         @piece = piece
         nil
       else
-        previous_piece = @piece.dup
-        @piece = piece
-        previous_piece
+        @piece.dup.tap { |object| @piece = piece }
       end
     end
 
