@@ -1,23 +1,42 @@
 module RubyChess
 
-  class PieceMover
-    def initialize squares
-      @squares = squares
-    end
-  end
-
   class ChessBoard
-    attr_reader :squares
+    attr_reader :squares, :rows, :columns
 
     def initialize
-      @squares = []
-      (8).downto(1) do |row|
-        ('a').upto('h') do |column|
-          @squares << Square.new((column + row.to_s).to_sym)
+      @rows    = ['8', '7', '6', '5', '4', '3', '2', '1']
+      @columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] 
+      
+      create_squares
+      link_squares
+    end
+
+    def create_squares
+      @squares = {}
+      rows.each do |row|
+        columns.each do |column|
+          coordinate = make_coordinate(row, column)
+          @squares[coordinate] =  Square.new(coordinate)
         end
       end
       @squares.freeze
-      @piece_mover = PieceMover.new(@squares)
+    end
+
+    def link_squares
+      rows.each do |row|
+        columns.each do |column|
+          coordinate = make_coordinate(row, column)
+          square = @squares[coordinate]
+          square.top_left     = @squares[make_coordinate(prev_item(rows, row), prev_item(columns, column))]
+          square.top          = @squares[make_coordinate(prev_item(rows, row), column)]
+          square.top_right    = @squares[make_coordinate(prev_item(rows, row), next_item(columns, column))]
+          square.right        = @squares[make_coordinate(row, next_item(columns, column))]
+          square.bottom_right = @squares[make_coordinate(next_item(rows, row), next_item(columns, column))]
+          square.bottom       = @squares[make_coordinate(next_item(rows, row), column)]
+          square.bottom_left  = @squares[make_coordinate(next_item(rows, row), prev_item(columns, column))]
+          square.left         = @squares[make_coordinate(row, prev_item(columns, column))]
+        end
+      end
     end
 
     def new_game
@@ -64,11 +83,27 @@ module RubyChess
       get_square_at(:g1).set_piece! Piece.make_a_white_knight
       get_square_at(:h1).set_piece! Piece.make_a_white_rook
     end
-    
-    def get_square_at(position)
-      squares.find do |square|
-        square.position == position
+
+    def next_item(array, value)
+      array[array.index(value) + 1]
+    end
+
+    def prev_item(array, value)
+      prev_index = array.index(value) - 1
+      if prev_index < 0 
+        nil
+      else
+        array[prev_index]
       end
+    end
+
+    def make_coordinate(row, column)
+      return (column + row).to_sym if row && column
+      nil
+    end
+
+    def get_square_at(position)
+      squares[position]
     end
 
     def get_piece_at(position)
@@ -77,8 +112,11 @@ module RubyChess
 
     private :squares,
             :put_pieces_in_starting_position,
-            :get_square_at, 
-            :get_piece_at
+            :get_square_at,
+            :get_piece_at,
+            :link_squares,
+            :next_item,
+            :prev_item
 
   end
 

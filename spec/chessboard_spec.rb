@@ -14,12 +14,12 @@ describe ChessBoard do
   end
 
   it "top left square is the a8 square" do
-    square = @chessboard.instance_variable_get(:@squares).first
+    square = @chessboard.instance_variable_get(:@squares)[:a8]
     expect(square.position).to be(:a8)
   end
 
   it "botton right square is the h1 square" do
-    square = @chessboard.instance_variable_get(:@squares).last
+    square = @chessboard.instance_variable_get(:@squares)[:h1]
     expect(square.position).to be(:h1)
   end
 
@@ -114,7 +114,6 @@ describe ChessBoard do
     end
 
     # White pieces
-
     it "a white rook is in the a1 position" do
       piece = @chessboard.send('get_piece_at', :a1)
       expect(piece.complete_name).to be(:white_rook)
@@ -193,6 +192,211 @@ describe ChessBoard do
     it "a white pawn is in the h2 position" do
       piece = @chessboard.send('get_piece_at', :h2)
       expect(piece.complete_name).to be(:white_pawn)
+    end
+
+  end
+
+  context "Squares graph" do
+
+    before(:each) { 
+      @chessboard = ChessBoard.new
+      @chessboard.new_game
+    }
+
+    context "A8, top-left most square" do
+      before(:each) do
+        @square = @chessboard.instance_variable_get(:@squares)[:a8]
+      end
+
+      it "is linked in top left corner to nothing" do
+        expect(@square.top_left).to be(nil)
+      end
+
+      it "is linked in top corner to nothing" do
+        expect(@square.top).to be(nil)
+      end
+
+      it "is linked in top right corner to nothing" do
+        expect(@square.top_right).to be(nil)
+      end
+
+      it "is linked in right corner to b8" do
+        expect(@square.right.position).to be(:b8)
+      end
+
+      it "is linked in bottom right corner to b7" do
+        expect(@square.bottom_right.position).to be(:b7)
+      end
+
+      it "is linked in bottom corner to a7" do
+        expect(@square.bottom.position).to be(:a7)
+      end
+
+      it "is linked in bottom left corner to nothing" do
+        expect(@square.bottom_left).to be(nil)
+      end
+
+      it "is linked in left corner to nothing" do
+        expect(@square.left).to be(nil)
+      end
+
+    end
+
+    context "H8, top-right most square" do
+      before(:each) do
+        @square = @chessboard.instance_variable_get(:@squares)[:h8]
+      end
+
+      it "is linked in top left corner to nothing" do
+        expect(@square.top_left).to be(nil)
+      end
+
+      it "is linked in top corner to nothing" do
+        expect(@square.top).to be(nil)
+      end
+
+      it "is linked in top right corner to nothing" do
+        expect(@square.top_right).to be(nil)
+      end
+
+      it "is linked in right corner to nothing" do
+        expect(@square.right).to be(nil)
+      end
+
+      it "is linked in bottom right corner to nothing" do
+        expect(@square.bottom_right).to be(nil)
+      end
+
+      it "is linked in bottom corner to a7" do
+        expect(@square.bottom.position).to be(:h7)
+      end
+
+      it "is linked in bottom left corner to g7" do
+        expect(@square.bottom_left.position).to be(:g7)
+      end
+
+      it "is linked in left corner to g8" do
+        expect(@square.left.position).to be(:g8)
+      end
+
+    end
+
+    context "H1, bottom-right most square" do
+      before(:each) do
+        @square = @chessboard.instance_variable_get(:@squares)[:h1]
+      end
+
+      it "is linked in top left corner to g2 square" do
+        expect(@square.top_left.position).to be(:g2)
+      end
+
+      it "is linked in top corner to h2 square" do
+        expect(@square.top.position).to be(:h2)
+      end
+
+      it "is linked in top right corner to nothing" do
+        expect(@square.top_right).to be(nil)
+      end
+
+      it "is linked in right corner to nothing" do
+        expect(@square.right).to be(nil)
+      end
+
+      it "is linked in bottom right corner to nothing" do
+        expect(@square.bottom_right).to be(nil)
+      end
+
+      it "is linked in bottom corner to nothing" do
+        expect(@square.bottom).to be(nil)
+      end
+
+      it "is linked in bottom left corner to nothing" do
+        expect(@square.bottom_left).to be(nil)
+      end
+
+      it "is linked in left corner to g1 square" do
+        expect(@square.left.position).to be(:g1)
+      end
+
+    end
+
+    context "A1, bottom-left most square" do
+      before(:each) do
+        @square = @chessboard.instance_variable_get(:@squares)[:a1]
+      end
+
+      it "is linked in top left corner to nothing" do
+        expect(@square.top_left).to be(nil)
+      end
+
+      it "is linked in top corner to a2 square" do
+        expect(@square.top.position).to be(:a2)
+      end
+
+      it "is linked in top right corner to b2 square" do
+        expect(@square.top_right.position).to be(:b2)
+      end
+
+      it "is linked in right corner to b1 square" do
+        expect(@square.right.position).to be(:b1)
+      end
+
+      it "is linked in bottom right corner to nothing" do
+        expect(@square.bottom_right).to be(nil)
+      end
+
+      it "is linked in bottom corner to nothing" do
+        expect(@square.bottom).to be(nil)
+      end
+
+      it "is linked in bottom left corner to nothing" do
+        expect(@square.bottom_left).to be(nil)
+      end
+
+      it "is linked in left corner to nothing" do
+        expect(@square.left).to be(nil)
+      end
+
+    end
+
+    context "D5, top-right central square" do
+      
+      before(:each) do
+        @square = @chessboard.instance_variable_get(:@squares)[:d5]
+      end
+
+      it "is linked in top left corner to c6 square" do
+        expect(@square.top_left.position).to be(:c6)
+      end
+
+      it "is linked in top corner to d6" do
+        expect(@square.top.position).to be(:d6)
+      end
+
+      it "is linked in top right corner to e6" do
+        expect(@square.top_right.position).to be(:e6)
+      end
+
+      it "is linked in right corner to e5" do
+        expect(@square.right.position).to be(:e5)
+      end
+
+      it "is linked in bottom right corner to e4" do
+        expect(@square.bottom_right.position).to be(:e4)
+      end
+
+      it "is linked in bottom corner to d4" do
+        expect(@square.bottom.position).to be(:d4)
+      end
+
+      it "is linked in bottom left corner to c4" do
+        expect(@square.bottom_left.position).to be(:c4)
+      end
+
+      it "is linked in left corner to c4" do
+        expect(@square.left.position).to be(:c5)
+      end
+
     end
 
   end

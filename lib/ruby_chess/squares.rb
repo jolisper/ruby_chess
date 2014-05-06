@@ -1,10 +1,28 @@
 module RubyChess
 
   class Square
+    attr_accessor :top_left,
+                  :top,
+                  :top_right,
+                  :right,
+                  :bottom_right,
+                  :bottom,
+                  :bottom_left,
+                  :left
 
     def initialize position
       @position = position
       @piece = nil
+      
+      # links
+      @top_left     = nil
+      @top          = nil
+      @top_right    = nil
+      @right        = nil
+      @bottom_right = nil
+      @bottom       = nil
+      @bottom_left  = nil
+      @left         = nil
     end
 
     def position
@@ -19,9 +37,13 @@ module RubyChess
         @piece.dup.tap { |object| @piece = piece }
       end
     end
-
+    
     def get_piece
       @piece
+    end
+
+    def has_a_piece_of_the_opposite_color?(piece)
+      get_piece.color != piece.color 
     end
 
     def empty?

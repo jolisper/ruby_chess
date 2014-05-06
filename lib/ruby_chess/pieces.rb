@@ -1,8 +1,16 @@
 module RubyChess
+
   class Piece
+    attr_reader :color, :name
+    
     def initialize(name, color)
-      @name = name
-      @color = color
+      @name     = name
+      @color    = color
+      @strategy = MoveStrategy.by_name(@name)
+    end
+
+    def valid_moves(square)
+      @strategy.valid_moves(self, square)
     end
 
     def complete_name
