@@ -1,9 +1,6 @@
 module RubyChess
 
   class KingMoveStrategy < MoveStrategy
-    
-    def initialize
-    end
 
     def valid_moves(piece, square)
       directions = ['top_left', 'top', 'top_right', 'right', 

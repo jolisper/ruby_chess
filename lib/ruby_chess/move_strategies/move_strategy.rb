@@ -5,7 +5,10 @@ module RubyChess
 
     def initialize 
       @strategies = {
-        king: KingMoveStrategy.new
+        king: KingMoveStrategy,
+        rook: RookMoveStrategy,
+        bishop: BishopMoveStrategy,
+        queen: QueenMoveStrategy
       }
     end
 
@@ -14,10 +17,10 @@ module RubyChess
     end
 
     def by_name(name)
-      @strategies[name]
+      @strategies[name] ? @strategies[name].new : MoveStrategy.new
     end
 
-    def valid_moves(square)
+    def valid_moves(piece, square)
       raise NotImplementedError, "Subclasses must override this method"
     end
 
