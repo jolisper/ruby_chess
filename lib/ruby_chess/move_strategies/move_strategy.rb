@@ -8,7 +8,8 @@ module RubyChess
         king: KingMoveStrategy,
         rook: RookMoveStrategy,
         bishop: BishopMoveStrategy,
-        queen: QueenMoveStrategy
+        queen: QueenMoveStrategy,
+        knight: KnightMoveStrategy
       }
     end
 

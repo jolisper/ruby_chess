@@ -436,5 +436,106 @@ describe Piece do
 
   end
 
+  context "when Knight moves" do
+    context "to empty squares" do
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        square = chessboard.send('get_square_at', :d4)
+        square.set_piece! Piece.make_a_white_knight
+
+        @moves = square.get_piece.valid_moves(square)
+      end
+
+      it "could jump to buttom top-left side" do
+        expect( find_move_by_destination(:b5)).to be_instance_of(Simple)
+      end
+
+      it "could jump to top top-left side" do
+        expect( find_move_by_destination(:c6)).to be_instance_of(Simple)
+      end
+
+     it "could jump to top top-right side" do
+        expect( find_move_by_destination(:e6)).to be_instance_of(Simple)
+      end
+
+      it "could jump to buttom top-rigth side" do
+        expect( find_move_by_destination(:f5)).to be_instance_of(Simple)
+      end
+
+      it "could jump to top bottom-rigth side" do
+        expect( find_move_by_destination(:f3)).to be_instance_of(Simple)
+      end
+
+      it "could jump to buttom bottom-rigth side" do
+        expect( find_move_by_destination(:e2)).to be_instance_of(Simple)
+      end
+
+      it "could jump to top bottom-left side" do
+        expect( find_move_by_destination(:c2)).to be_instance_of(Simple)
+      end
+
+      it "could jump to buttom bottom-left side" do
+        expect( find_move_by_destination(:b3)).to be_instance_of(Simple)
+      end
+
+    end
+
+    context "to squares occupied by opposite pieces" do
+
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        rook_square = chessboard.send('get_square_at', :d4)
+        rook_square.set_piece! Piece.make_a_white_knight
+
+        chessboard.send('get_square_at', :b5).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :c6).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :e6).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :f5).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :f3).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :e2).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :c2).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :b3).set_piece! Piece.make_a_black_pawn
+
+        @moves = rook_square.get_piece.valid_moves(rook_square)
+      end
+
+      it "could capture to bottom top-left side" do
+        expect( find_move_by_destination(:b5)).to be_instance_of(Capture)
+      end
+
+      it "could capture to top top-left side" do
+        expect( find_move_by_destination(:c6)).to be_instance_of(Capture)
+      end
+
+     it "could capture to top top-right side" do
+        expect( find_move_by_destination(:e6)).to be_instance_of(Capture)
+      end
+
+      it "could capture to bottom top-rigth side" do
+        expect( find_move_by_destination(:f5)).to be_instance_of(Capture)
+      end
+
+      it "could capture to top bottom-rigth side" do
+        expect( find_move_by_destination(:f3)).to be_instance_of(Capture)
+      end
+
+      it "could capture to bottom bottom-rigth side" do
+        expect( find_move_by_destination(:e2)).to be_instance_of(Capture)
+      end
+
+      it "could capture to top bottom-left side" do
+        expect( find_move_by_destination(:c2)).to be_instance_of(Capture)
+      end
+
+      it "could capture to bottom bottom-left side" do
+        expect( find_move_by_destination(:b3)).to be_instance_of(Capture)
+      end
+
+    end
+
+  end
+
 end
 
