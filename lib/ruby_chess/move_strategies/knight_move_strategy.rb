@@ -17,10 +17,12 @@ module RubyChess
       valid_moves = []
       square = @square
 
+      # The knight moves twice in the same direction...
       2.times do
         square = square.send(first_move) if square
       end
       
+      # And one to the two sides to form the "L"-shape move
       if square
         seconds_move.each do |move|
           next_square = square.send(move)
