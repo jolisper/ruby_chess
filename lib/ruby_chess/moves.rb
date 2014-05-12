@@ -20,6 +20,14 @@ module RubyChess
       Capture.new origin_square, destination_square
     end
 
+    def self.make_a_en_passant_capture_move(origin_square, destination_square, passant_square)
+      EnPassantCapture.new origin_square, destination_square
+    end
+
+    def self.make_a_en_passant_risk_move(origin_square, destination_square)
+      EnPassantRisk.new origin_square, destination_square
+    end
+
     def self.make_a_promotion_move(origin_square, destination_square)
       Promotion.new origin_square, destination_square
     end
@@ -42,5 +50,18 @@ module RubyChess
 
     end
   end
+
+  class EnPassantCapture < Move
+    def execute
+
+    end
+  end
+
+  class EnPassantRisk < Move
+    def execute
+
+    end
+  end
+
 
 end

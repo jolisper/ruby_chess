@@ -196,7 +196,7 @@ describe ChessBoard do
 
   end
 
-  context "Squares graph" do
+  context "when squares graph is contructed" do
 
     before(:each) { 
       @chessboard = ChessBoard.new

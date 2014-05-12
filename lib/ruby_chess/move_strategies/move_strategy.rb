@@ -5,11 +5,12 @@ module RubyChess
 
     def initialize 
       @strategies = {
-        king: KingMoveStrategy,
-        rook: RookMoveStrategy,
+        king:   KingMoveStrategy,
+        rook:   RookMoveStrategy,
         bishop: BishopMoveStrategy,
-        queen: QueenMoveStrategy,
-        knight: KnightMoveStrategy
+        queen:  QueenMoveStrategy,
+        knight: KnightMoveStrategy,
+        pawn:   PawnMoveStrategy
       }
     end
 

@@ -3,12 +3,12 @@ module RubyChess
   class BishopMoveStrategy < MoveStrategy
 
     def valid_moves(piece, square)
-      directions = ['top_left', 'top_right', 'bottom_right', 'bottom_left']
+      directions = [:top_left, :top_right, :bottom_right, :bottom_left]
       
       valid_moves = []
 
       directions.each do |direction|
-        next_square = square.send("#{direction}")
+        next_square = square.send(direction)
 
         catch :no_more_moves_in_this_direction do
           while next_square
@@ -22,7 +22,7 @@ module RubyChess
               # A piece of the same color is encountered in the path
               throw :no_more_moves_in_this_direction
             end
-            next_square = next_square.send("#{direction}")
+            next_square = next_square.send(direction)
           end
         end
       end

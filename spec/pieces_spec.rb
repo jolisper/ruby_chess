@@ -535,6 +535,83 @@ describe Piece do
 
     end
 
+    context "when Pawn moves" do
+      context "to empty squares" do
+        before(:each) do
+          chessboard = ChessBoard.new
+
+          square = chessboard.send('get_square_at', :f2)
+          square.set_piece! Piece.make_a_white_pawn
+
+          @moves = square.get_piece.valid_moves(square)
+        end
+
+        it "could move one to the front" do
+          expect(find_move_by_destination(:f3)).to be_instance_of(Simple)
+        end
+
+        it "could move two to the front if is the first move" do
+          expect(find_move_by_destination(:f4)).to be_instance_of(EnPassantRisk)
+        end
+
+      end
+
+      context "to squares occupied by opposite pieces (diagonally)" do
+
+        before(:each) do
+          chessboard = ChessBoard.new
+
+          square = chessboard.send('get_square_at', :f2)
+          square.set_piece! Piece.make_a_white_pawn
+
+          chessboard.send('get_square_at', :e3).set_piece! Piece.make_a_black_pawn
+          chessboard.send('get_square_at', :g3).set_piece! Piece.make_a_black_pawn
+
+          @moves = square.get_piece.valid_moves(square)
+        end
+
+        it "could capture at top-left side" do
+          expect(find_move_by_destination(:e3)).to be_instance_of(Capture)
+        end
+
+        it "could capture at top-right side" do
+          expect(find_move_by_destination(:g3)).to be_instance_of(Capture)
+        end
+
+      end
+
+      context "diagonally and have to the side a pawn in en passant risk" do
+
+        before(:each) do
+          chessboard = ChessBoard.new
+
+          square = chessboard.send('get_square_at', :f5)
+          square.set_piece! Piece.make_a_white_pawn
+
+          black_pawn_one = Piece.make_a_black_pawn
+          black_pawn_two = Piece.make_a_black_pawn
+
+          black_pawn_one.set_en_passant_risk_on!
+          black_pawn_two.set_en_passant_risk_on!
+
+          chessboard.send('get_square_at', :e5).set_piece! black_pawn_one
+          chessboard.send('get_square_at', :g5).set_piece! black_pawn_two
+
+          @moves = square.get_piece.valid_moves(square)
+        end
+
+        it "could capture at top-left side" do
+          expect(find_move_by_destination(:e6)).to be_instance_of(EnPassantCapture)
+        end
+
+        it "could capture at top-right side" do
+          expect(find_move_by_destination(:g6)).to be_instance_of(EnPassantCapture)
+        end
+
+      end
+
+    end
+
   end
 
 end

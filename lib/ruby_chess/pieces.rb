@@ -4,9 +4,11 @@ module RubyChess
     attr_reader :color, :name
     
     def initialize(name, color)
-      @name     = name
-      @color    = color
-      @strategy = MoveStrategy.by_name(@name)
+      @name            = name
+      @color           = color
+      @strategy        = MoveStrategy.by_name(@name)
+      @first_move      = true
+      @en_passant_risk = false      
     end
 
     def valid_moves(square)
@@ -17,6 +19,28 @@ module RubyChess
       (@color.to_s + '_' + @name.to_s).to_sym
     end
 
+    def move!(square)
+      @square = square
+      @first_move = false
+    end
+
+    def first_move?
+      @first_move
+    end
+
+    def set_en_passant_risk_on!
+      @en_passant_risk = true
+    end
+
+    def set_en_passant_risk_off!
+      @en_passant_risk = false
+    end
+
+    def en_passant_risk?
+      @en_passant_risk
+    end
+
+    # Factory methods
     def self.make_a_black_rook
       Piece.new :rook, :black
     end
