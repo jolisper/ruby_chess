@@ -610,9 +610,41 @@ describe Piece do
 
       end
 
+      context "to the last rank " do
+        before(:each) do
+          chessboard = ChessBoard.new
+
+          white_pawn_square = chessboard.send('get_square_at', :c7)
+          white_pawn_square.set_piece! Piece.make_a_white_pawn
+          
+          @white_pawn_moves = 
+            white_pawn_square.get_piece.valid_moves(white_pawn_square)
+
+          black_pawn_square = chessboard.send('get_square_at', :c2)
+          black_pawn_square.set_piece! Piece.make_a_black_pawn
+          
+          @black_pawn_moves = 
+            black_pawn_square.get_piece.valid_moves(black_pawn_square)
+        end
+        
+        it "it is promoted to white Queen" do
+          move = @white_pawn_moves.find do |move|
+            move.destination == :c8 && move.is_a?(Promotion)
+          end
+          expect(move).to be_a Promotion
+        end
+
+        it "it is promoted to black Queen" do
+          move = @black_pawn_moves.find do |move|
+            move.destination == :c1 && move.is_a?(Promotion)
+          end
+          expect(move).to be_a Promotion
+        end
+
+      end
+      
     end
 
   end
 
 end
-

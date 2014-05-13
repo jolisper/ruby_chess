@@ -29,6 +29,9 @@ module RubyChess
       # The "en passant" special capture
       calculate_en_passant_captures(valid_moves)
 
+      # The pawn could be promoted
+      calculate_promoted_moves(valid_moves)
+
       valid_moves
     end
 
@@ -41,7 +44,7 @@ module RubyChess
         
         if @piece.first_move?
           next_square = next_square.send(@basic_direction)
-          if next_square.empty?
+          if next_square && next_square.empty?
             valid_moves << Move.make_a_en_passant_risk_move(@square, next_square)
           end
         end
@@ -83,6 +86,15 @@ module RubyChess
       end
     end
 
+    def calculate_promoted_moves(valid_moves)
+      next_square = @square.send(@basic_direction)
+      if next_square
+        is_last_rank = next_square.position.to_s.reverse.start_with?('8', '1')
+        if next_square.empty? && is_last_rank
+          valid_moves << Move.make_a_promotion_move(@square, next_square)
+        end
+      end
+    end
  
   end
   
