@@ -111,14 +111,17 @@ module RubyChess
     end
 
     def squares_with(color)
-      @squares.select do |k,v| 
+      squares = @squares.select do |k,v| 
         piece = v.get_piece
-        if piece == nil
+        if !piece
           false
         else
+          #puts piece.color
           piece.color == color.to_sym
         end
       end
+
+      squares.values if squares
     end
 
     private :squares,

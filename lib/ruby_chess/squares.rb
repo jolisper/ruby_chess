@@ -56,8 +56,18 @@ module RubyChess
       @piece == nil
     end
 
-    def get_squares_attacked_by_pieces_of_color(color)
-      @chessboard.squares_with(color)
+    def influenced_by_opposite_color?(piece)
+      squares = @chessboard.squares_with(piece.opposite_color)
+      
+      influenced_squares = squares.reduce([]) do |memo, square|
+        memo.concat(square.get_piece.influenced_squares)
+      end
+      
+      influenced_positions = influenced_squares.map do |influenced_square|
+        influenced_square.position
+      end
+
+      influenced_positions.include?(self.position)
     end
 
   end

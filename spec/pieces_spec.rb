@@ -109,7 +109,7 @@ describe Piece do
       end
 
       it "could capture one to right" do
-        expect( find_move_by_destination(:g5) ).to be_instance_of(Capture)
+        expect( find_move_by_destination(:g5) ).to be(nil)
       end
 
       it "could capture one to bottom right" do
@@ -117,7 +117,7 @@ describe Piece do
       end                                   
       
       it "could capture one to bottom" do      
-        expect( find_move_by_destination(:f4) ).to be_instance_of(Capture)
+        expect( find_move_by_destination(:f4) ).to be(nil)
       end                                   
       
       it "could capture one to bottom left" do 
@@ -125,7 +125,7 @@ describe Piece do
       end                                   
       
       it "could capture one to left" do        
-        expect( find_move_by_destination(:e5) ).to be_instance_of(Capture)
+        expect( find_move_by_destination(:e5) ).to be(nil)
       end                                   
       
     end
