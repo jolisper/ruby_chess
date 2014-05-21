@@ -130,6 +130,35 @@ describe Piece do
       
     end
 
+    context "when King is in a square" do
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        rook_square = chessboard.send('get_square_at', :f5)
+        rook_square.set_piece! Piece.make_a_white_king
+
+        chessboard.send('get_square_at', :e6).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :g6).set_piece! Piece.make_a_white_pawn
+        chessboard.send('get_square_at', :e4).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :g4).set_piece! Piece.make_a_white_pawn
+
+        @squares = rook_square.get_piece.influenced_squares
+      end
+      
+      it "have influence on others squares" do
+        puts @squares
+        find_square_by_position(:e6).should_not be(nil)
+        find_square_by_position(:f6).should_not be(nil)
+        find_square_by_position(:g6).should_not be(nil)
+        find_square_by_position(:g5).should_not be(nil)
+        find_square_by_position(:g4).should_not be(nil)
+        find_square_by_position(:f4).should_not be(nil)
+        find_square_by_position(:e4).should_not be(nil)
+        find_square_by_position(:e5).should_not be(nil)
+      end
+      
+    end
+
   end
 
   context "when Rook moves" do

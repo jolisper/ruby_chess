@@ -47,6 +47,27 @@ module RubyChess
 #      @square.get_squares_attacked_by_pieces_of_color(@piece.opposite_color)
 #    end
 
+    def influenced_squares(piece, square)
+      @piece  = piece
+      @square = square
+
+      directions = [:top_left, :top, :top_right, :right, 
+                    :bottom_right, :bottom, :bottom_left, :left]
+
+      influenced_squares = []
+
+      directions.each do |direction|
+        next_square = square.send(direction)
+        if next_square 
+          influenced_squares << next_square
+        end
+      end
+      
+      puts influenced_squares
+
+      influenced_squares
+    end
+
   end
 
 end
