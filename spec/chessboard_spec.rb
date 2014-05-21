@@ -41,14 +41,6 @@ describe ChessBoard do
       expect(@chessboard).to have(16).squares_with(:black)
     end
 
-#    it "#squares_attacked_by(:white) returns all the squares attacked by white pieces" do
-#      expect(@chessboard).to have(8).squares_attacked_by(:white)
-#    end
-
-#    it "#squares_attacked_by(:black) returns all the squares attacked by black pieces" do
-#      expect(@chessboard).to have(8).squares_attacked_by(:black)
-#    end
-
     it "a black rook is in the a8 position" do
       piece = @chessboard.send('get_piece_at', :a8)
       expect(piece.complete_name).to be(:black_rook)
