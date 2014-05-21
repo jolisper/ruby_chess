@@ -16,7 +16,7 @@ module RubyChess
       rows.each do |row|
         columns.each do |column|
           coordinate = make_coordinate(row, column)
-          @squares[coordinate] =  Square.new(coordinate)
+          @squares[coordinate] =  Square.new(coordinate, self)
         end
       end
       @squares.freeze
@@ -108,6 +108,17 @@ module RubyChess
 
     def get_piece_at(position)
       get_square_at(position).get_piece
+    end
+
+    def squares_with(color)
+      @squares.select do |k,v| 
+        piece = v.get_piece
+        if piece == nil
+          false
+        else
+          piece.color == color.to_sym
+        end
+      end
     end
 
     private :squares,

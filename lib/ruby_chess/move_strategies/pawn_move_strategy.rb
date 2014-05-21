@@ -41,7 +41,7 @@ module RubyChess
         if next_square.empty?
           valid_moves << Move.make_a_simple_move(@square, next_square)
         end
-        
+
         if @piece.first_move?
           next_square = next_square.send(@basic_direction)
           if next_square && next_square.empty?
@@ -94,6 +94,21 @@ module RubyChess
           valid_moves << Move.make_a_promotion_move(@square, next_square)
         end
       end
+    end
+
+    def influenced_squares(piece, square)
+      valid_moves(piece, square) # FIX workaround for initialization 
+
+      influenced_squares = []
+
+      @attack_directions.each do |attack_direction|
+        next_square = @square.send(attack_direction)
+        if next_square
+          influenced_squares << next_square
+        end
+      end
+
+      influenced_squares
     end
  
   end

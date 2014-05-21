@@ -3,6 +3,9 @@ module RubyChess
   class KingMoveStrategy < MoveStrategy
 
     def valid_moves(piece, square)
+      @piece  = piece
+      @square = square
+
       directions = [:top_left, :top, :top_right, :right, 
                     :bottom_right, :bottom, :bottom_left, :left]
 
@@ -19,8 +22,31 @@ module RubyChess
         end
       end
 
+#      attacked_squares = calculate_attacked_squares
+
+#      p attacked_squares.class
+#      p valid_moves
+
+#      if attacked_squares && !attacked_squares.empty?
+#        valid_moves.select do |move|
+#          attacked_positions = attacked_squares.map { |sq|
+#            #sq.position 
+#          }
+#          if attacked_positions
+#            attacked_positions.include?(move.destination) 
+#          else
+#            false
+#          end
+#        end
+#      end
+
       valid_moves
     end
+
+#    def calculate_attacked_squares
+#      @square.get_squares_attacked_by_pieces_of_color(@piece.opposite_color)
+#    end
+
   end
 
 end

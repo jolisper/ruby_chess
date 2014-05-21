@@ -26,6 +26,10 @@ module RubyChess
       raise NotImplementedError, "Subclasses must override this method"
     end
 
+    def influenced_squares(piece, square)
+      raise NotImplementedError, "Subclasses must override this method"
+    end
+
   end
 
 end

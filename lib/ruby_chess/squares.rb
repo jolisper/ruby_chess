@@ -10,9 +10,10 @@ module RubyChess
                   :bottom_left,
                   :left
 
-    def initialize position
-      @position = position
-      @piece = nil
+    def initialize(position, chessboard)
+      @position   = position
+      @chessboard = chessboard
+      @piece      = nil
       
       # links
       @top_left     = nil
@@ -30,6 +31,7 @@ module RubyChess
     end
 
     def set_piece!(piece)
+      piece.set_square! self
       if (empty?) 
         @piece = piece
         nil
@@ -46,8 +48,16 @@ module RubyChess
       get_piece.color != piece.color 
     end
 
+    def has_a_piece_of_the_same_color?(piece)
+      get_piece.color == piece.color 
+    end
+
     def empty?
       @piece == nil
+    end
+
+    def get_squares_attacked_by_pieces_of_color(color)
+      @chessboard.squares_with(color)
     end
 
   end

@@ -8,20 +8,37 @@ module RubyChess
       @color           = color
       @strategy        = MoveStrategy.by_name(@name)
       @first_move      = true
-      @en_passant_risk = false      
+      @en_passant_risk = false     
+      @square          = nil
     end
 
-    def valid_moves(square)
-      @strategy.valid_moves(self, square)
+    def valid_moves
+      @strategy.valid_moves(self, @square)
+    end
+
+    def influenced_squares
+      @strategy.influenced_squares(self, @square)
     end
 
     def complete_name
       (@color.to_s + '_' + @name.to_s).to_sym
     end
 
+    def opposite_color
+      if color == :white
+        :black
+      else
+        :white
+      end
+    end
+
     def move!(square)
-      @square = square
+      set_square! square
       @first_move = false
+    end
+
+    def set_square!(square)
+      @square = square
     end
 
     def first_move?
