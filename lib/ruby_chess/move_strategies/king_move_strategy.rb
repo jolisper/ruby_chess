@@ -63,8 +63,6 @@ module RubyChess
         end
       end
       
-      puts influenced_squares
-
       influenced_squares
     end
 
