@@ -19,7 +19,11 @@ module RubyChess
 
       # The knight moves twice in the same direction...
       2.times do
-        square = square.send(first_move) if square
+        begin
+          square = square.send(first_move) 
+        rescue
+          return []
+        end
       end
       
       # And one to the two sides to form the "L"-shape move
@@ -37,6 +41,44 @@ module RubyChess
       end
             
       valid_moves
+    end
+
+    def influenced_squares(piece, square)
+      @piece  = piece
+      @square = square
+
+      moves_top    = get_squares(:top,    [:left, :right])
+      moves_bottom = get_squares(:bottom, [:left, :right])
+      moves_left   = get_squares(:left,   [:top, :bottom])
+      moves_right  = get_squares(:right,  [:top, :bottom])
+      
+      moves_top.concat(moves_bottom).concat(moves_left).concat(moves_right)
+    end
+
+    def get_squares(first_move, seconds_move)
+      influenced_squares = []
+      square = @square
+
+      # The knight moves twice in the same direction...
+      2.times do
+        begin
+          square = square.send(first_move)
+        rescue
+          return []
+        end
+      end
+      
+      # And one to the two sides to form the "L"-shape move
+      if square
+        seconds_move.each do |move|
+          next_square = square.send(move)
+          if next_square 
+            influenced_squares << next_square
+          end
+        end
+      end
+            
+      influenced_squares
     end
 
   end

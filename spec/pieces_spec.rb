@@ -603,6 +603,41 @@ describe Piece do
 
     end
 
+    context "when Knight is in a square" do
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        rook_square = chessboard.send('get_square_at', :d4)
+        rook_square.set_piece! Piece.make_a_white_knight
+
+        chessboard.send('get_square_at', :c6).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :e6).set_piece! Piece.make_a_black_pawn
+
+        chessboard.send('get_square_at', :b5).set_piece! Piece.make_a_white_pawn
+        chessboard.send('get_square_at', :f5).set_piece! Piece.make_a_black_pawn
+
+        chessboard.send('get_square_at', :b3).set_piece! Piece.make_a_white_pawn
+        chessboard.send('get_square_at', :f3).set_piece! Piece.make_a_white_pawn
+
+        chessboard.send('get_square_at', :c2).set_piece! Piece.make_a_white_pawn
+        chessboard.send('get_square_at', :e2).set_piece! Piece.make_a_white_pawn
+
+        @squares = rook_square.get_piece.influenced_squares
+      end
+      
+      it "have influence on others squares" do
+        find_square_by_position(:c6).should_not be(nil)
+        find_square_by_position(:e6).should_not be(nil)
+        find_square_by_position(:b5).should_not be(nil)
+        find_square_by_position(:f5).should_not be(nil)
+        find_square_by_position(:b3).should_not be(nil)
+        find_square_by_position(:f3).should_not be(nil)
+        find_square_by_position(:c2).should_not be(nil)
+        find_square_by_position(:e2).should_not be(nil)
+      end
+      
+    end
+
     context "when Pawn moves" do
       context "to empty squares" do
         before(:each) do
