@@ -30,6 +30,35 @@ module RubyChess
       valid_moves
     end
 
+    def influenced_squares(piece, square)
+      directions = [:top, :right, :bottom, :left]
+      
+      influenced_squares = []
+
+      directions.each do |direction|
+        next_square = square.send(direction)
+
+        catch :no_more_moves_in_this_direction do
+          while next_square
+            if next_square.empty?
+              influenced_squares << next_square
+            elsif next_square.has_a_piece_of_the_opposite_color?(piece)
+              influenced_squares << next_square
+              # The rook may not jump over other pieces
+              throw :no_more_moves_in_this_direction
+            else
+              # A piece of the same color is encountered in the path
+              influenced_squares << next_square
+              throw :no_more_moves_in_this_direction
+            end
+            next_square = next_square.send(direction)
+          end
+        end
+      end
+
+      influenced_squares
+    end
+
   end
 
 end

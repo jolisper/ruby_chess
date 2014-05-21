@@ -243,6 +243,44 @@ describe Piece do
 
     end
 
+    context "when Rook is in a square" do
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        rook_square = chessboard.send('get_square_at', :d5)
+        rook_square.set_piece! Piece.make_a_white_rook
+
+        chessboard.send('get_square_at', :d8).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :h5).set_piece! Piece.make_a_white_pawn
+        chessboard.send('get_square_at', :d1).set_piece! Piece.make_a_black_pawn
+        chessboard.send('get_square_at', :a5).set_piece! Piece.make_a_white_pawn
+
+        @squares = rook_square.get_piece.influenced_squares
+      end
+      
+      it "have influence on others squares" do
+        find_square_by_position(:d6).should_not be(nil)
+        find_square_by_position(:d7).should_not be(nil)
+        find_square_by_position(:d8).should_not be(nil)
+
+        find_square_by_position(:a5).should_not be(nil)
+        find_square_by_position(:b5).should_not be(nil)
+        find_square_by_position(:c5).should_not be(nil)
+
+        find_square_by_position(:e5).should_not be(nil)
+        find_square_by_position(:f5).should_not be(nil)
+        find_square_by_position(:g5).should_not be(nil)
+        find_square_by_position(:h5).should_not be(nil)
+
+        find_square_by_position(:d4).should_not be(nil)
+        find_square_by_position(:d3).should_not be(nil)
+        find_square_by_position(:d2).should_not be(nil)
+        find_square_by_position(:d1).should_not be(nil)
+      end
+      
+    end
+
+
   end
 
   context "when Bishop moves" do
@@ -498,6 +536,65 @@ describe Piece do
           expect( find_move_by_destination(:a2)).to be_instance_of(Capture)
         end
 
+      end
+      context "when Queen is in a square" do
+        before(:each) do
+
+          chessboard = ChessBoard.new
+
+          rook_square = chessboard.send('get_square_at', :d4)
+          rook_square.set_piece! Piece.make_a_white_queen
+
+          chessboard.send('get_square_at', :a7).set_piece! Piece.make_a_black_pawn
+          chessboard.send('get_square_at', :d8).set_piece! Piece.make_a_white_pawn
+          chessboard.send('get_square_at', :h8).set_piece! Piece.make_a_black_pawn
+          chessboard.send('get_square_at', :h4).set_piece! Piece.make_a_white_pawn
+
+          chessboard.send('get_square_at', :g1).set_piece! Piece.make_a_black_pawn
+          chessboard.send('get_square_at', :d1).set_piece! Piece.make_a_white_pawn
+          chessboard.send('get_square_at', :a1).set_piece! Piece.make_a_black_pawn
+          chessboard.send('get_square_at', :a4).set_piece! Piece.make_a_white_pawn
+
+          @squares = rook_square.get_piece.influenced_squares
+        end
+        
+        it "have influence on others squares" do
+          find_square_by_position(:c5).should_not be(nil)
+          find_square_by_position(:b6).should_not be(nil)
+          find_square_by_position(:a7).should_not be(nil)
+
+          find_square_by_position(:d5).should_not be(nil)
+          find_square_by_position(:d6).should_not be(nil)
+          find_square_by_position(:d7).should_not be(nil)
+          find_square_by_position(:d8).should_not be(nil)
+
+          find_square_by_position(:e5).should_not be(nil)
+          find_square_by_position(:f6).should_not be(nil)
+          find_square_by_position(:g7).should_not be(nil)
+          find_square_by_position(:h8).should_not be(nil)
+
+          find_square_by_position(:e4).should_not be(nil)
+          find_square_by_position(:f4).should_not be(nil)
+          find_square_by_position(:g4).should_not be(nil)
+          find_square_by_position(:h4).should_not be(nil)
+
+          find_square_by_position(:e3).should_not be(nil)
+          find_square_by_position(:f2).should_not be(nil)
+          find_square_by_position(:g1).should_not be(nil)
+
+          find_square_by_position(:d3).should_not be(nil)
+          find_square_by_position(:d2).should_not be(nil)
+          find_square_by_position(:d1).should_not be(nil)
+
+          find_square_by_position(:c3).should_not be(nil)
+          find_square_by_position(:b2).should_not be(nil)
+          find_square_by_position(:a1).should_not be(nil)
+
+          find_square_by_position(:a4).should_not be(nil)
+          find_square_by_position(:b4).should_not be(nil)
+          find_square_by_position(:c4).should_not be(nil)
+        end
+        
       end
 
     end
