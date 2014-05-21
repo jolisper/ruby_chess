@@ -146,7 +146,6 @@ describe Piece do
       end
       
       it "have influence on others squares" do
-        puts @squares
         find_square_by_position(:e6).should_not be(nil)
         find_square_by_position(:f6).should_not be(nil)
         find_square_by_position(:g6).should_not be(nil)
