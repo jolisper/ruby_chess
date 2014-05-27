@@ -10,7 +10,7 @@ describe MoveStrategy do
     @chessboard.new_game
   }
 
-  context "the Pawn move strategy" do
+  describe "the Pawn move strategy" do
     
   end
 

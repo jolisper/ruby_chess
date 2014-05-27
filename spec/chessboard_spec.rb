@@ -23,7 +23,7 @@ describe ChessBoard do
     expect(square.position).to be(:h1)
   end
 
-  context "when new game is started" do
+  describe "when new game is started" do
     before(:each) { 
       @chessboard = ChessBoard.new
       @chessboard.new_game
@@ -50,7 +50,7 @@ describe ChessBoard do
       piece = @chessboard.send('get_piece_at', :b8)
       expect(piece.complete_name).to be(:black_knight)
     end
-
+    
     it "a black bishop is in the c8 position" do
       piece = @chessboard.send('get_piece_at', :c8)
       expect(piece.complete_name).to be(:black_bishop)
@@ -204,14 +204,14 @@ describe ChessBoard do
 
   end
 
-  context "when squares graph is contructed" do
+  describe "when squares graph is contructed" do
 
     before(:each) { 
       @chessboard = ChessBoard.new
       @chessboard.new_game
     }
 
-    context "A8, top-left most square" do
+    describe "A8, top-left most square" do
       before(:each) do
         @square = @chessboard.instance_variable_get(:@squares)[:a8]
       end
@@ -250,7 +250,7 @@ describe ChessBoard do
 
     end
 
-    context "H8, top-right most square" do
+    describe "H8, top-right most square" do
       before(:each) do
         @square = @chessboard.instance_variable_get(:@squares)[:h8]
       end
@@ -289,7 +289,7 @@ describe ChessBoard do
 
     end
 
-    context "H1, bottom-right most square" do
+    describe "H1, bottom-right most square" do
       before(:each) do
         @square = @chessboard.instance_variable_get(:@squares)[:h1]
       end
@@ -328,7 +328,7 @@ describe ChessBoard do
 
     end
 
-    context "A1, bottom-left most square" do
+    describe "A1, bottom-left most square" do
       before(:each) do
         @square = @chessboard.instance_variable_get(:@squares)[:a1]
       end
@@ -367,7 +367,7 @@ describe ChessBoard do
 
     end
 
-    context "D5, top-right central square" do
+    describe "D5, top-right central square" do
       
       before(:each) do
         @square = @chessboard.instance_variable_get(:@squares)[:d5]

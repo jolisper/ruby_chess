@@ -3,7 +3,7 @@ require 'ruby_chess'
 
 describe Square do
   
-  context "when there is no piece on the square" do
+  describe "when there is no piece on the square" do
     before(:each) { @square = Square.new(:h8, ChessBoard.new) }
 
     it "#empty? returns true" do
@@ -21,7 +21,7 @@ describe Square do
 
   end
 
-  context "when there is a piece on the square" do
+  describe "when there is a piece on the square" do
     before(:each) { 
       @square = Square.new(:h8, ChessBoard.new) 
       @square.set_piece! Piece.make_a_white_pawn
@@ -38,20 +38,5 @@ describe Square do
 
 
   end
-
-#  context "bla bla" do
-#    before(:each) { 
-#      chessboard = ChessBoard.new
-#      chessboard.new_game
-#      @square = Square.new(:h8, chessboard) 
-#      @square.set_piece! Piece.make_a_white_pawn
-#    }
-
-#    it "#get_squares_attacked_by_pieces_of_color(:color) returns all the squares attacked by pieces of color :color" do
-#      pieces = @square.get_squares_attacked_by_pieces_of_color(:black)
-#     pieces
-#  end
-#    
-#  end
 
 end
