@@ -13,8 +13,8 @@ describe Piece do
     @squares.find { |square| square.position == position }
   end
 
-  context "when Rook moves" do
-    context "to empty squares" do
+  describe "when Rook moves" do
+    describe "to empty squares" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -52,7 +52,7 @@ describe Piece do
 
     end
 
-    context "to squares occupied by opposite pieces" do
+    describe "to squares occupied by opposite pieces" do
 
       before(:each) do
         chessboard = ChessBoard.new
@@ -96,7 +96,7 @@ describe Piece do
 
     end
 
-    context "when Rook is in a square" do
+    describe "when Rook is in a square" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -136,8 +136,8 @@ describe Piece do
 
   end
 
-  context "when Bishop moves" do
-    context "to empty squares" do
+  describe "when Bishop moves" do
+    describe "to empty squares" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -174,7 +174,7 @@ describe Piece do
 
     end
 
-    context "to squares occupied by opposite pieces" do
+    describe "to squares occupied by opposite pieces" do
 
       before(:each) do
         chessboard = ChessBoard.new
@@ -217,7 +217,7 @@ describe Piece do
 
     end
 
-    context "when Bishop is in a square" do
+    describe "when Bishop is in a square" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -253,8 +253,8 @@ describe Piece do
       
     end
     
-    context "when Queen moves" do
-      context "to empty squares" do
+    describe "when Queen moves" do
+      describe "to empty squares" do
         before(:each) do
           chessboard = ChessBoard.new
 
@@ -317,7 +317,7 @@ describe Piece do
 
       end
 
-      context "to squares occupied by opposite pieces" do
+      describe "to squares occupied by opposite pieces" do
 
         before(:each) do
           chessboard = ChessBoard.new
@@ -390,7 +390,7 @@ describe Piece do
         end
 
       end
-      context "when Queen is in a square" do
+      describe "when Queen is in a square" do
         before(:each) do
 
           chessboard = ChessBoard.new
@@ -452,8 +452,8 @@ describe Piece do
 
     end
 
-    context "when Knight moves" do
-      context "to empty squares" do
+    describe "when Knight moves" do
+      describe "to empty squares" do
         before(:each) do
           chessboard = ChessBoard.new
 
@@ -497,7 +497,7 @@ describe Piece do
 
       end
 
-      context "to squares occupied by opposite pieces" do
+      describe "to squares occupied by opposite pieces" do
 
         before(:each) do
           chessboard = ChessBoard.new
@@ -553,7 +553,7 @@ describe Piece do
 
     end
 
-    context "when Knight is in a square" do
+    describe "when Knight is in a square" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -588,8 +588,8 @@ describe Piece do
       
     end
 
-    context "when Pawn moves" do
-      context "to empty squares" do
+    describe "when Pawn moves" do
+      describe "to empty squares" do
         before(:each) do
           chessboard = ChessBoard.new
 
@@ -609,7 +609,7 @@ describe Piece do
 
       end
 
-      context "to squares occupied by opposite pieces (diagonally)" do
+      describe "to squares occupied by opposite pieces (diagonally)" do
 
         before(:each) do
           chessboard = ChessBoard.new
@@ -633,7 +633,7 @@ describe Piece do
 
       end
 
-      context "diagonally and have to the side a pawn in en passant risk" do
+      describe "diagonally and have to the side a pawn in en passant risk" do
 
         before(:each) do
           chessboard = ChessBoard.new
@@ -663,7 +663,7 @@ describe Piece do
 
       end
 
-      context "to the last rank " do
+      describe "to the last rank " do
         before(:each) do
           chessboard = ChessBoard.new
 
@@ -698,7 +698,7 @@ describe Piece do
 
     end
 
-    context "when white Pawn is in a square" do
+    describe "when white Pawn is in a square" do
       before(:each) do
         chessboard = ChessBoard.new
         
@@ -733,7 +733,7 @@ describe Piece do
 
     end
 
-    context "when black Pawn is in a square" do
+    describe "when black Pawn is in a square" do
       before(:each) do
         chessboard = ChessBoard.new
         

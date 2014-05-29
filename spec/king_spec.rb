@@ -13,9 +13,9 @@ describe Piece, "King" do
     @squares.find { |square| square.position == position }
   end
 
-  context "when King moves" do
+  describe "when King moves" do
 
-    context "to empty squares" do
+    describe "to empty squares" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -62,7 +62,7 @@ describe Piece, "King" do
       end
     end
 
-    context "to squares occupied by opposite pieces" do
+    describe "to squares occupied by opposite pieces" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -130,7 +130,7 @@ describe Piece, "King" do
       
     end
 
-    context "in its first move" do
+    describe "in its first move" do
       before(:each) do
         chessboard = ChessBoard.new
 
@@ -157,7 +157,7 @@ describe Piece, "King" do
 
   end
 
-  context "when King is in a square" do
+  describe "when King is in a square" do
     before(:each) do
       chessboard = ChessBoard.new
 
