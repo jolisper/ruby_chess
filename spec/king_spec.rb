@@ -130,6 +130,31 @@ describe Piece, "King" do
       
     end
 
+    context "in its first move" do
+      before(:each) do
+        chessboard = ChessBoard.new
+
+        square = chessboard.send('get_square_at', :e1)
+        square.set_piece! Piece.make_a_white_king
+
+        square = chessboard.send('get_square_at', :g1)
+        square.set_piece! Piece.make_a_white_rook
+
+        square = chessboard.send('get_square_at', :c1)
+        square.set_piece! Piece.make_a_white_rook
+
+        @moves = square.get_piece.valid_moves
+      end
+
+      it "could do a short castling" do 
+        expect( find_move_by_destination(:g1) ).to be_instance_of(ShortCastling)
+      end                                   
+      
+      it "could do a long castling" do        
+        expect( find_move_by_destination(:c1) ).to be_instance_of(LongCastling)
+      end                                   
+    end
+
   end
 
   context "when King is in a square" do

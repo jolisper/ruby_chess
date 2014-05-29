@@ -63,5 +63,16 @@ module RubyChess
     end
   end
 
+  class ShortCastling < Move
+    def execute
+
+    end
+  end
+
+  class LongCastling < Move
+    def execute
+
+    end
+  end
 
 end
